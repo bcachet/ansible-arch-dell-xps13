@@ -1,0 +1,4 @@
+- name: configure sandboxing
+  command: firecfg --fix
+  become_user: '{{ user.name }}'
+

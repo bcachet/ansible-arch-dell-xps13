@@ -1,0 +1,8 @@
+- name: Install every day applications
+  pacman: name={{ item }} state=present
+  with_items:
+          - firefox
+  notify:
+    - configure sandboxing
+
+

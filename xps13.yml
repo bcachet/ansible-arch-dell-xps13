@@ -1,0 +1,13 @@
+- hosts: localhost
+  roles:
+    # - { role: base, tags: ['base'] }
+    # - { role: system, tags: ['system'] }
+    # - { role: x, tags: ['x'] }
+    # - { role: kde, tags: ['kde'] }
+    - { role: sandboxing, tags: ['sandboxing'] }
+    - { role: applications, tags: ['apps'] }
+
+
+  # vars_prompt:
+  #   - name: user_password
+  #     prompt: "Enter desired user password"

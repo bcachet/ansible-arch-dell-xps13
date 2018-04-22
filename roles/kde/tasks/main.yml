@@ -1,0 +1,13 @@
+- name: Install KDE
+  pacman: name={{ item }} state=present
+  with_items:
+          - plasma-desktop
+          - sddm
+
+- name: Loading display manager
+  file:
+    src: /usr/lib/systemd/system/sddm.service
+    dest: /etc/systemd/system/display-manager.service
+    state: link
+
+
