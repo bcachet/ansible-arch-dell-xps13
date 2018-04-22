@@ -1,0 +1,10 @@
+- name: Install development tools
+  pacman: name={{ item }} state=present
+  with_items: "{{ development_tools }}"
+
+- include: git.yml
+- include: vim.yml
+- include: spacemacs.yml
+# - include: jetbrains.yml
+- include: clojure.yml
+

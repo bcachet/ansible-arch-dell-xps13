@@ -1,21 +1,22 @@
 user:
-    name: bertrand
-    uid: 1000
-    group: bertrand
-    shell: /usr/bin/zsh
-    email: bertrand.cachet@gmail.com
+  name: bertrand
+  uid: 1000
+  group: bertrand
+  shell: /usr/bin/zsh
+  email: bertrand.cachet@gmail.com
 
 hostname: BrHome
 
 base_packages:
-    - base-devel
-    - tmux
-    - git
-    - htop
-    - coreutils
-    - moreutils
-    - dateutils
-    - lsof
-    - jq
-    - the_silver_searcher
+  - base-devel
+  - coreutils
+  - moreutils
+  - lsof
+  - htop
+  - perf
+
+development_tools:
+  - jq
+  - the_silver_searcher
+  - tmux
 

@@ -1,3 +1,0 @@
-- name: Install RCM
-  aur: name=rcm user={{ user.name }}
-

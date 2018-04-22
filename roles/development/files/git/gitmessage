@@ -1,0 +1,44 @@
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+
+# Type is:
+#   * add: New feature
+#   * ref(actoring)
+#   * fix: Bug fix
+#   * test: Add missing test/refactor tests
+#   * rem(ove): Remove feature/code
+#   * mod(idfy): Modify feature
+#   * rea(dability): Improve formatting/style
+#
+# Scope: Varies per project. Can be for example:
+#   * stats
+#   * serialization
+#   * motors
+#
+# Subject: Should be short (< 50 lines)
+#
+# Body: Should answer these questions:
+#   * why this change necessary
+#   * how does it address this issue
+#   * what side effects does this change have
+#
+# Footer: Link to issue/story/card
+#   * Close #3443
+#   * Reference #3443
+#
+# Example:
+# FIX(stats): Curves not displayed
+# 
+# Bug: Curves not displayed when first clicking Fn/Pd and then All Curves
+# 
+# Fix: When clicking All/None/Relevant buttons or Measurement/Group checkbox,
+# an internal variable is used to indicate if a redraw is needed or not. This
+# internal variable was not updated correctly in the All button
+# 
+# Close: #443
+
+
+

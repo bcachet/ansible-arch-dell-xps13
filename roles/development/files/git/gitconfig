@@ -1,0 +1,62 @@
+[user]
+	name = Bertrand Cachet
+	email = bertrand.cachet@gmail.com
+[github]
+  user =  bcachet
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+  quotepath = false
+  whitespace = trailing-space,space-before-tab,indent-with-non-tab
+  autocrlf = false
+	pager = less
+[push]
+  ; only push current branch if exists on repository
+  default = current
+[pull]
+  ; rebase instead of merge after fetching modifications from repo with pull
+  rebase = true
+[clean]
+  ; clean files that are not tracked
+  requireForce = false
+[diff]
+  ; use more usefull prefix than a/b
+  mnemonicprefix = true
+[help]
+  ; typo in command name that is corrected is applyed and not only displayed
+  enabled = true
+[commit]
+  template = ~/.gitmessage
+[alias]
+  ; Explicit is better than implicit. If we want to merge, we should
+  ; do so ourselves
+  pull = pull --ff-only
+  ; Update repo with remote content and update submodules
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  ; What the hell i have done for the last week
+  standup = !"git log --reverse --branches --since=1.weeks --author=$(git config --get user.email) --format=format:'%C(cyan) %ad %C(yellow) %h %Creset %s %C(green)%d' --date=local"
+  ; Save current work
+  save = "!f() { git add -A && git commit -m \"SAVEPOINT: ${1}\"; }; f"
+  ; Reset that shit to original
+  wipe = "!f() { git add -A && git commit -qm \"WIPE SAVEPOINT: ${1}\" && git reset HEAD~1 --hard; }; f"
+  ; Come back to last commit
+  undo = reset HEAD~1 --mixed
+  ; We are  not beginners we don't need all that stuff around status
+  st = status -sb
+  ; Reorganise commits before pushing
+  ready = rebase -i @{u}
+  lg = log --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit 
+  lgs = !"git lg --stat"
+  ; History of a file with diffs
+  filelog = log -u
+  search = "!f() { git log -i --grep="$1"; }; f"
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[rerere]
+	enabled = true

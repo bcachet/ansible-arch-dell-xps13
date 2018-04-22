@@ -1,0 +1,11 @@
+---
+- name: Refresh pacman mirros
+  pacman: update_cache=yes
+ 
+- name: Set hostname
+  hostname: name={{ hostname }}
+
+- include: shell.yml
+- include: user.yml
+- include: sudo.yml
+- include: packages.yml

@@ -1,0 +1,7 @@
+- name: Install Java/Clojure
+  pacman: name={{ item }} state=present
+  with_items:
+    - jdk8-openjdk
+    - rlwrap
+    - clojure
+

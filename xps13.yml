@@ -1,11 +1,12 @@
 - hosts: localhost
   roles:
-    - { role: base, tags: ['base'] }
-    - { role: system, tags: ['system'] }
-    - { role: x, tags: ['x'] }
-    - { role: kde, tags: ['kde'] }
-    - { role: sandboxing, tags: ['sandboxing'] }
-    - { role: applications, tags: ['apps'] }
+    # - { role: system, tags: ['system'] }
+    # - { role: base, tags: ['base'] }
+    # - { role: x, tags: ['x'] }
+    # - { role: desktop, tags: ['desktop'] }
+    # - { role: security, tags: ['security'] }
+    - { role: development, tags: ['development'] }
+    # - { role: applications, tags: ['apps'] }
 
 
   # vars_prompt:

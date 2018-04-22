@@ -1,12 +1,3 @@
----
-- name: Refresh pacman mirros
-  pacman: update_cache=yes
- 
-# - name: Set hostname
-#   hostname: name={{ hostname }}
-
-- include: shell.yml
-# - include: user.yml
-# - include: sudo.yml
-# - include: packages.yml
-- include: dotfiles.yml
+- name: Install base packages
+  pacman: name={{ item }} state=present
+  with_items: "{{ base_packages }}"
