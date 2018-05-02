@@ -1,4 +1,28 @@
 - name: Install ViM
-  pacman: name=vim state=present
+  pacman: name={{ item }} state=present
+  with_items:
+    - vim
 
-# - name: Configure ViM
+- name: Install Fira Code font
+  aur: name=ttf-fira-code user={{ user.name }}
+
+- name: Install ViM configuration files
+  file:
+    src: "{{ role_path }}/files/vim/{{ item }}"
+    dest: /home/{{ user.name }}/.{{ item }}
+    state: link
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+  with_items:
+    - vimrc
+    - vimrc.local.bundles
+
+- name: Install ViM packages
+  shell: |
+    vim +PlugInstall +qa << EOL
+    y
+    EOL
+  become: yes
+  become_user: "{{ user.name }}"
+
+

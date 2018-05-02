@@ -1,0 +1,212 @@
+" Put plugins and dictionaries in this dir (also on Windows)
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+"*****************************************************************************
+"" Vim-Plug
+"*****************************************************************************
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  echo "Installing Vim-Plug..."
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+
+" Required:
+call plug#begin('~/.vim/plugged')
+"*****************************************************************************
+"" Vim-Plug packages
+"*****************************************************************************
+" Buffer/File navigation
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+" Programming language support
+Plug 'sheerun/vim-polyglot'
+" Status line
+Plug 'bling/vim-airline'
+" Color scheme
+Plug 'dracula/vim'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'altercation/vim-colors-solarized'
+
+" Search file with ag the Silver Searcher
+Plug 'rking/ag.vim'
+" Remove trailing whitespace
+Plug 'ntpeters/vim-better-whitespace'
+" Completion on TAB
+Plug 'ervandew/supertab'
+" Tmux integration
+Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
+" Show UNDO as a tree
+Plug 'mbbill/undotree'
+" Editoconfig support to handle space/tab
+Plug 'editorconfig/editorconfig-vim'
+
+" Snipets management
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Git integration
+Plug 'tpope/vim-fugitive'
+
+" Comment/Uncomment code
+Plug 'tpope/vim-commentary'
+
+" Quote/Parenthese handling
+Plug 'tpope/vim-surround'
+
+" Syntax checking/Lint support
+Plug 'scrooloose/syntastic'
+
+"" Include user's extra bundle
+if filereadable(expand("~/.vimrc.local.bundles"))
+  source ~/.vimrc.local.bundles
+endif
+
+
+" All of your Plugins must be added before the following line
+call plug#end()
+
+"" PLUGINS CONFIGURATIONS
+
+" vim-airline
+set laststatus=2
+let g:airline_theme = 'dracula'
+" let g:airline_solarized_bg = 'dark'
+let g:airline_powerline_fonts=1
+let g:airline_extensions = ['branch']
+
+"" ctrlp.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|tox)$'
+let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
+let g:ctrlp_use_caching = 0
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+noremap <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_map = '<leader>e'
+let g:ctrlp_open_new_file = 'r'
+let g:ctrl_cmd = 'CtrlP'
+let g:ctrlp_map = '<c-p>'
+nnoremap <C-F> :CtrlPCurFile<CR>
+nnoremap <C-B> :CtrlPBuffer<CR>
+nnoremap <C-P> :CtrlP<CR>
+
+" Ag
+" --- type ° to search the word in all files in the current dir
+nmap ° :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <space>/ :Ag
+
+" Comment C++ code using // and not /*
+autocmd FileType cpp set commentstring=//\ %s
+
+" VIMUX
+" Prompt for a command to run
+nmap <c-r><c-p> :VimuxPromptCommand <CR>
+" Run last command executed by RunVimTmuxCommand
+map <c-r><c-l> :VimuxRunLastCommand <CR>
+
+" UndoTree
+nnoremap <F5> :UndotreeToggle<cr>
+
+" UltiSnips
+let g:UltiSnipsListSnippets="<C-L><C-L>"
+let g:UltiSnipsExpandTrigger="<C-L>"
+let g:UltiSnipsJumpForwardTrigger="<C-J>"
+let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+"*****************************************************************************
+"" GENERAL
+"*****************************************************************************
+set number	"" Show line numbers
+set linebreak	"" Break lines at word (requires Wrap lines)
+set showbreak=+++ 	"" Wrap-broken line prefix
+set textwidth=100	"" Line wrap (number of cols)
+set showmatch	"" Highlight matching brace
+set visualbell	"" Use visual bell (no beeping)
+
+set hlsearch	"" Highlight all search results
+set smartcase	"" Enable smart-case search
+set ignorecase	"" Always case-insensitive
+set incsearch	"" Searches for strings incrementally
+
+
+"""" Advanced
+set ruler	"" Show row and column ruler information
+
+""" Toggle between relative/absolute line number
+let g:relative_mode = 0
+function! NumberToggle()
+  set number
+  if(g:relative_mode == 1)
+    set norelativenumber
+    let g:relative_mode = 0
+  else
+    set relativenumber
+    let g:relative_mode = 1
+  endif
+endfunc
+
+nnoremap <C-L> :call NumberToggle()<cr>
+
+function! ToggleQuickfix()
+  let l:nr =  winnr("$")
+  if l:nr == 1
+      copen
+  else
+      cclose
+  endif
+endfunction
+
+nnoremap <F2> :call ToggleQuickfix()<cr>
+
+set undolevels=1000	"" Number of undo levels
+set backspace=indent,eol,start	"" Backspace behaviour
+
+" indentation depend on filetype
+filetype plugin indent on
+
+autocmd FileType c setlocal ts=4 sw=4 sts=4 et smartindent
+autocmd FileType python setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent formatoptions=croqj comments=:#\:,:#
+autocmd FileType javascript setlocal ts=4 sw=4 sts=4 et textwidth=0 smartindent
+
+" Just hate folding
+set foldlevel=20
+set foldlevelstart=20
+
+" Font
+set guifont=Fira\ Code:h11
+
+" set term=xterm
+set t_Co=256
+syntax on
+if has('win32') || has('win64')
+  colorscheme default
+else
+  " set background=dark
+  " let g:solarized_termcolors=256
+  " colorscheme solarized
+  colorscheme dracula
+endif
+set noswapfile
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
+
+"" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+

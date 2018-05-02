@@ -16,7 +16,4 @@ base_packages:
   - perf
 
 development_tools:
-  - jq
-  - the_silver_searcher
-  - tmux
 

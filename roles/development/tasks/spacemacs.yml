@@ -1,2 +1,21 @@
 - name: Install emacs
-  pacman: name=emacs state=present
+  pacman: name={{ item }} state=present
+  with_items:
+    - emacs
+    - adobe-source-code-pro-fonts
+    - ctags
+
+- name: Install spacemacs
+  git:
+    repo: https://github.com/syl20bnr/spacemacs
+    dest: /home/{{ user.name }}/.emacs.d
+
+- name: Spacemacs configuration
+  file:
+    src: "{{ role_path }}/files/spacemacs/{{ item }}"
+    dest: /home/{{ user.name }}/.{{ item }}
+    state: link
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+  with_items:
+    - spacemacs

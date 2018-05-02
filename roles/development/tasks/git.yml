@@ -1,8 +1,9 @@
 - name: Install Git
   pacman: name={{ item }} state=present
-  with_items: "{{ development_tools }}"
+  with_items:
+    - git
 
-- name: Configure
+- name: Git configuration
   file:
     src: "{{ role_path }}/files/git/{{ item }}"
     dest: /home/{{ user.name }}/.{{ item }}

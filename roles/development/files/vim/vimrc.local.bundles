@@ -1,0 +1,69 @@
+" Markdwon support
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+
+" Markdown/reStructuredText preview
+Plug 'kannokanno/previm'
+
+" Clojure
+" Clojure > Syntax highligh
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+autocmd Filetype clojure nmap <buffer> gf <Plug>FireplaceDjump
+" Clojure > parentheses
+Plug 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+  \ ['blue',        '#FF6000'],
+  \ ['cyan',        '#00FFFF'],
+  \ ['darkgreen',   '#00FF00'],
+  \ ['LightYellow', '#c0c0c0'],
+  \ ['blue',        '#FF6000'],
+  \ ['cyan',        '#00FFFF'],
+  \ ['darkgreen',   '#00FF00'],
+  \ ['LightYellow', '#c0c0c0'],
+  \ ['blue',        '#FF6000'],
+  \ ['cyan',        '#00FFFF'],
+  \ ['darkgreen',   '#00FF00'],
+  \ ['LightYellow', '#c0c0c0'],
+  \ ['blue',        '#FF6000'],
+  \ ['cyan',        '#00FFFF'],
+  \ ['darkgreen',   '#00FF00'],
+  \ ['LightYellow', '#c0c0c0'],
+  \ ]
+let g:rbpt_max = 16
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj RainbowParenthesesLoadBraces
+" Clojure > Navigation
+Plug 'tpope/vim-classpath', { 'for': 'clojure' }
+Plug 'tpope/vim-surround', {'for': 'clojure'}
+" Clojure > NREPL support
+Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'tpope/vim-projectionist', {'for': 'clojure'}
+Plug 'tpope/vim-dispatch', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Clojure > Paredit
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+
+" Clojure > Formatting
+" Plug 'FelipeBB/kibit-vim'
+Plug 'venantius/vim-cljfmt'
+let g:clj_fmt_autosave = 0
+Plug 'venantius/vim-eastwood'
+
+" Python
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'ivanov/vim-ipython', { 'for': 'python' }
+
+" Ansible
+Plug 'stephpy/vim-yaml'
+
+" C/C++
+Plug 'justmao945/vim-clang'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+" Let Vim walk up directory hierarchy from CWD to root looking for tags file
+set tags=tags;/
+" Tell EasyTags to use the tags file found by Vim
+let g:easytags_dynamic_files = 1
