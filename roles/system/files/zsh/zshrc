@@ -47,8 +47,8 @@ export VISUAL=$EDITOR
 
 
 # SSH Keychain (maybe I should add Timeout to keychain)
-# export SSH_ASKPASS=/usr/bin/ksshaskpass
-# eval `keychain --agents ssh --eval id_rsa`
+export SSH_ASKPASS=/usr/bin/ksshaskpass
+eval `keychain --agents ssh --eval id_rsa`
 
-source ~/.zshrc.vars
-source ~/.zshrc.exo
+# source ~/.zshrc.vars
+# source ~/.zshrc.exo
