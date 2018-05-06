@@ -4,4 +4,4 @@
     - jdk8-openjdk
     - rlwrap
     - clojure
-
+  become: true

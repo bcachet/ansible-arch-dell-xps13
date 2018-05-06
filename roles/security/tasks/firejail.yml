@@ -2,7 +2,10 @@
   pacman: name={{ item }} state=present
   with_items:
           - firejail
+  become: true
+
 
 - name: Activate firectl
-  command: firecfg 
+  command: firecfg
+  become: true
 

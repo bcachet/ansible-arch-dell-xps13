@@ -3,4 +3,5 @@
           - xf86-video-intel
           - xf86-input-libinput
           - xf86-input-synaptics
+  become: true
 

@@ -7,13 +7,3 @@ user:
 
 hostname: BrHome
 
-base_packages:
-  - base-devel
-  - coreutils
-  - moreutils
-  - lsof
-  - htop
-  - perf
-
-development_tools:
-

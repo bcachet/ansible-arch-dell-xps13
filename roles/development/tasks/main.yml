@@ -4,6 +4,7 @@
     - jq
     - the_silver_searcher
     - tmux
+  become: true
 
 - include: git.yml
 - include: vim.yml

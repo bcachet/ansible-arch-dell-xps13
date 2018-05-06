@@ -4,6 +4,7 @@
     - emacs
     - adobe-source-code-pro-fonts
     - ctags
+  become: true
 
 - name: Install spacemacs
   git:

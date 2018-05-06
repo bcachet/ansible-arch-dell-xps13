@@ -3,6 +3,8 @@
   with_items:
           - plasma-desktop
           - sddm
+  become: true
+
 
 - name: Loading display manager
   file:

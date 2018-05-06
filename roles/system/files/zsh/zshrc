@@ -1,0 +1,54 @@
+# Antigen (ZSH package manager) configuration
+source ~/.antigen.zsh
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle tmux
+antigen bundle lein
+antigen bundle pip
+antigen bundle command-not-found
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
+antigen apply
+
+# # Tools configuration
+# ## AutoJump
+source /etc/profile.d/autojump.zsh
+# ## Python virtualenv
+export PATH=$PATH:~/.local/bin
+
+# Aliases
+alias ls='ls --color'
+# TMux aliases
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls'
+alias tkill='tmux kill-session -t'
+# Generic
+alias open='open_command'
+# Emacs
+alias killemacs='emacsclient -e "(kill-emacs)"'
+alias e='emacsclient -nw --alternate-editor="" --create-frame "$@"'
+alias E='emacsclient --alternate-editor="" --create-frame "$@" --no-wait --quiet'
+# alias aws='aws --endpoint-url="sos-ch-dk-2.exo.io"'
+# Aliases for ArchLinux
+alias pacu='sudo pacman -Syu'
+
+# Docker
+
+# Environment Variables
+export SHELL=/usr/bin/zsh
+# export TERM="screen-256color"
+export EDITOR=vim
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+
+
+# SSH Keychain (maybe I should add Timeout to keychain)
+# export SSH_ASKPASS=/usr/bin/ksshaskpass
+# eval `keychain --agents ssh --eval id_rsa`
+
+source ~/.zshrc.vars
+source ~/.zshrc.exo

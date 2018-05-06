@@ -2,6 +2,7 @@
   pacman: name={{ item }} state=present
   with_items:
     - vim
+  become: true
 
 - name: Install Fira Code font
   aur: name=ttf-fira-code user={{ user.name }}
@@ -22,7 +23,5 @@
     vim +PlugInstall +qa << EOL
     y
     EOL
-  become: yes
-  become_user: "{{ user.name }}"
 
 

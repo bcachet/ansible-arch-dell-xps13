@@ -1,14 +1,11 @@
 - hosts: localhost
   roles:
-    # - { role: system, tags: ['system'] }
-    # - { role: base, tags: ['base'] }
-    # - { role: x, tags: ['x'] }
-    # - { role: desktop, tags: ['desktop'] }
-    # - { role: security, tags: ['security'] }
+    - { role: system, tags: ['system'] }
+    - { role: base, tags: ['base'] }
+    - { role: x, tags: ['x'] }
+    - { role: desktop, tags: ['desktop'] }
+    - { role: security, tags: ['security'] }
     - { role: development, tags: ['development'] }
-    # - { role: applications, tags: ['apps'] }
+    - { role: applications, tags: ['apps'] }
 
 
-  # vars_prompt:
-  #   - name: user_password
-  #     prompt: "Enter desired user password"

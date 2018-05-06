@@ -2,6 +2,7 @@
   pacman: name={{ item }} state=present
   with_items:
           - firefox
+  become: true
   notify:
     - configure sandboxing
 
