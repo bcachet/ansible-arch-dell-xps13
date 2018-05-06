@@ -1,6 +1,8 @@
 - name: ZSH
   pacman: name={{ item }} state=present
   with_items:
+    - the_silver_searcher
+    - tmux
     - autojump
     - keychain
     - ksshaskpass
@@ -18,3 +20,19 @@
   with_items:
     - antigen.zsh
     - zshrc
+
+- name: Download Tmux configuration
+  get_url:
+    url: https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf
+    dest: /home/{{ user.name }}/.tmux.conf
+
+- name: Configure Tmux
+  file:
+    src: "{{ role_path }}/files/tmux/{{ item }}"
+    dest: /home/{{ user.name }}/.{{ item }}
+    state: link
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+  with_items:
+    - tmux.conf.local
+

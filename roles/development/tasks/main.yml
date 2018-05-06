@@ -2,8 +2,6 @@
   pacman: name={{ item }} state=present
   with_items:
     - jq
-    - the_silver_searcher
-    - tmux
   become: true
 
 - include: git.yml
