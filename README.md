@@ -1,3 +1,4 @@
+B
 # System initialization
 
 Follow PRE_INSTALL.sh script to generate initial system
@@ -15,5 +16,5 @@ We need to configure it
 ```bash
 mkdir -p /etc/ansible
 cp etc-ansible-hosts /etc/ansible/hosts
-ansible-playbook xps13.yml
+ansible-playbook xps13.yml --ask-sudo-pass
 ```
