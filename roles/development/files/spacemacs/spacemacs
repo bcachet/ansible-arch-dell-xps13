@@ -31,7 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     vimscriptivy
      auto-completion
      syntax-checking
      better-defaults
@@ -46,22 +45,17 @@ values."
 
      markdown
      yaml
-;;     puppet
-;;     html
 
-;;     javascript
      python
      c-c++
      emacs-lisp
      (clojure :variables clojure-enable-fancify-symbols nil)
-          ;; evil-cleverparens
-
 
      (erc :variables erc-server-list '(("irc.own3d.ch"
                                         :port 15666
                                         :ssl t
                                         :nick "bertrand")))
-     ;; emoji
+     emoji
 
      )
    ;; List of additional packages that will be installed without being

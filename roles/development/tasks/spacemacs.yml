@@ -20,3 +20,6 @@
     group: "{{ user.group }}"
   with_items:
     - spacemacs
+    - authinfo.gpg
+
+# https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources

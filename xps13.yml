@@ -3,8 +3,8 @@
     - { role: system, tags: ['system'] }
     - { role: base, tags: ['base'] }
     - { role: x, tags: ['x'] }
-    - { role: desktop, tags: ['desktop'] }
     - { role: security, tags: ['security'] }
+    - { role: desktop, tags: ['desktop'] }
     - { role: development, tags: ['development'] }
     - { role: applications, tags: ['apps'] }
 
