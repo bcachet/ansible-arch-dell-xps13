@@ -11,5 +11,21 @@
     src: /usr/lib/systemd/system/sddm.service
     dest: /etc/systemd/system/display-manager.service
     state: link
+  become: true
 
+- name: Bluetooth
+  pacman: name={{ item }} state=present
+  with_items:
+    - bluez
+    - bluez-utils
+  become: true
 
+- name: Bluetooth power on
+  command: bluetoothctl power on
+
+- name: Bluetooth service
+  service:
+    name: bluetooth
+    state: started
+    enabled: yes
+  become: true
