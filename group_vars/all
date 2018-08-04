@@ -2,6 +2,7 @@ user:
   name: bertrand
   uid: 1000
   group: bertrand
+  groups: wheel sys
   shell: /usr/bin/zsh
   email: bertrand.cachet@gmail.com
 

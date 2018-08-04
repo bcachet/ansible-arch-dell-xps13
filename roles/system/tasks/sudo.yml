@@ -3,7 +3,10 @@
   become: true
 
 - name: Add user to wheel group
-  user: name={{ user.name }} groups=wheel append=yes
+  user:
+    name: "{{ user.name }}"
+    groups: wheel
+    append: yes
   become: true
 
 - name: Sudo configuration

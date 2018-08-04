@@ -29,3 +29,58 @@
     state: started
     enabled: yes
   become: true
+
+- name: Printing (CUPS)
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - cups
+    - cups-pdf
+    - avahi
+    - nss-mdns
+  become: true
+
+- name: Add user to sys group for managing CUPS
+  user:
+    name: "{{ user.name }}"
+    groups: sys
+    append: yes
+  become: true
+
+
+- name: Printing configuration
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: /etc/{{ item }}
+    state: file
+  with_items:
+    - nsswitch.conf
+
+- name: Printing services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - org.cups.cupsd.service
+    - avahi-daemon.service
+  become: true
+
+- name: Fonts
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ttf-freefont
+    - ttf-croscore
+    - ttf-liberation
+    - ttf-bitstream-vera
+  become: true
+
+- name: Fonts from AUR
+  aur: name={{ item }} user="{{ user.name }}"
+  with_items:
+    - ttf-selawik
+    - ttf-twemoji-color
+  become: true

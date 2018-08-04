@@ -1,9 +1,19 @@
 - name: Create user group
-  group: name={{ user.group }} state=present
+  group:
+    name: "{{ user.group }}"
+    state: present
   become: true
 
 - name: Create user
-  user: name={{ user.name }} group={{ user.group }} password={{ user_password|password_hash('sha512') }} shell={{ user.shell }} update_password=on_create uid={{ user.uid }} append=yes
+  user:
+    name: "{{ user.name }}"
+    group: "{{ user.group }}"
+    groups: "{{ user.groups }}"
+    password: "{{ user_password|password_hash('sha512') }}"
+    shell: "{{ user.shell }}"
+    update_password: on_create
+    uid: "{{ user.uid }}"
+    append: yes
   become: true
 
 
