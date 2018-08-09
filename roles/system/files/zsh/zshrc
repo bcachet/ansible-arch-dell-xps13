@@ -52,3 +52,9 @@ eval `keychain --agents ssh --eval id_rsa`
 
 # source ~/.zshrc.vars
 # source ~/.zshrc.exo
+
+# added by pipsi (https://github.com/mitsuhiko/pipsi)
+export PATH="/home/bertrand/.local/bin:$PATH"
+
+# added by pipsi (https://github.com/mitsuhiko/pipsi)
+export PATH="/home/bertrand/.local/bin:$PATH"

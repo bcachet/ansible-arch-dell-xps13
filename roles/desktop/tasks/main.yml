@@ -3,14 +3,25 @@
   with_items:
           - plasma-desktop
           - sddm
+          - dolphin
+          - kde-applications
   become: true
-
 
 - name: Loading display manager
   file:
     src: /usr/lib/systemd/system/sddm.service
     dest: /etc/systemd/system/display-manager.service
     state: link
+  become: true
+
+- name: Some default applications
+  pacman: name={{ item }} state=present
+  with_items:
+    - okular
+    - akonadi
+    - kdepim-addons
+    - telepathy
+    - kcalc
   become: true
 
 - name: Bluetooth
@@ -50,12 +61,12 @@
 
 
 - name: Printing configuration
-  file:
+  copy:
     src: "{{ role_path }}/files/{{ item }}"
     dest: /etc/{{ item }}
-    state: file
   with_items:
     - nsswitch.conf
+  become: true
 
 - name: Printing services
   service:
