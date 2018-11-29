@@ -1,4 +1,3 @@
-B
 # System initialization
 
 Follow PRE_INSTALL.sh script to generate initial system

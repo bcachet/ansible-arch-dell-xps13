@@ -86,12 +86,12 @@
     - ttf-freefont
     - ttf-croscore
     - ttf-liberation
-    - ttf-bitstream-vera
+    - noto-fonts-emoji
   become: true
 
-- name: Fonts from AUR
-  aur: name={{ item }} user="{{ user.name }}"
-  with_items:
-    - ttf-selawik
-    - ttf-twemoji-color
-  become: true
+# - name: Fonts from AUR
+#   aur: name={{ item }} user="{{ user.name }}"
+#   with_items:
+#     - ttf-selawik
+#     - ttf-twemoji-color
+#   become: true

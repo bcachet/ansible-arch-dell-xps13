@@ -2,11 +2,13 @@
   pacman: name={{ item }} state=present
   with_items:
     - jq
+    - terminator
+    - xsel
   become: true
 
 - include: git.yml
 - include: vim.yml
 - include: spacemacs.yml
-- include: jetbrains.yml
+# - include: jetbrains.yml
 - include: clojure.yml
 
