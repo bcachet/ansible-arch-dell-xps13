@@ -1,12 +1,11 @@
 ---
-- name: Refresh pacman mirros
-  pacman: update_cache=yes
+- name: Refresh repositories cache
+  apt: update_cache=yes
   become: true
 
 - name: Set hostname
   hostname: name={{ hostname }}
   become: true
 
-- include: shell.yml
 # - include: user.yml
 # - include: sudo.yml

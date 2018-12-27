@@ -1,0 +1,2 @@
+- name: Reload fonts
+  shell: fc-cache -f -v ~/local/share/fonts/

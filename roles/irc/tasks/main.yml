@@ -1,0 +1,5 @@
+- name: HexChat
+  apt:
+    name: hexchat
+    state: present
+  become: true

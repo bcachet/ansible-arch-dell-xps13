@@ -89,8 +89,8 @@
     - noto-fonts-emoji
   become: true
 
-# - name: Fonts from AUR
-#   aur: name={{ item }} user="{{ user.name }}"
+# - name: Fonts from APT
+#   apt: name={{ item }} user="{{ user.name }}"
 #   with_items:
 #     - ttf-selawik
 #     - ttf-twemoji-color

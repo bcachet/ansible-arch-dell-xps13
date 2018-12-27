@@ -1,14 +1,11 @@
 - name: Install development tools
-  pacman: name={{ item }} state=present
-  with_items:
-    - jq
-    - terminator
-    - xsel
+  apt:
+    name: ['jq', 'terminator', 'xsel', 'tree']
+    state: present
   become: true
 
-- include: git.yml
-- include: vim.yml
-- include: spacemacs.yml
-# - include: jetbrains.yml
-- include: clojure.yml
+- name: Install AWS
+  shell: pipsi install awscli
+  register: command_result
+  failed_when: command_result.rc != 0 and 'is already installed' not in command_result.stdout
 

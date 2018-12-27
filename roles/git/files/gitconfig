@@ -13,7 +13,7 @@
   quotepath = false
   whitespace = trailing-space,space-before-tab,indent-with-non-tab
   autocrlf = false
-	pager = less
+  pager = less
 [push]
   ; only push current branch if exists on repository
   default = current
@@ -56,7 +56,7 @@
   search = "!f() { git log -i --grep="$1"; }; f"
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 [rerere]
-	enabled = true
+  enabled = true

@@ -1,18 +1,12 @@
 - name: ZSH
-  pacman: name={{ item }} state=present
-  with_items:
-    - the_silver_searcher
-    - tmux
-    - autojump
-    - keychain
-    - ksshaskpass
-    - zsh
-    - zsh-completions
+  apt:
+    name: ['silversearcher-ag', 'tmux', 'autojump', 'zsh', 'zsh-completions']
+    state: present
   become: true
 
 - name: Configure ZSH
   file:
-    src: "{{ role_path }}/files/zsh/{{ item }}"
+    src: "{{ role_path }}/files/{{ item }}"
     dest: /home/{{ user.name }}/.{{ item }}
     state: link
     owner: "{{ user.name }}"
@@ -28,7 +22,7 @@
 
 - name: Configure Tmux
   file:
-    src: "{{ role_path }}/files/tmux/{{ item }}"
+    src: "{{ role_path }}/files/{{ item }}"
     dest: /home/{{ user.name }}/.{{ item }}
     state: link
     owner: "{{ user.name }}"

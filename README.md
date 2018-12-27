@@ -12,6 +12,7 @@ You should have configure your system in UEFI mode.
 # Launch Ansible
 Ansible has been installed in previous step.
 We need to configure it
+
 ```bash
 mkdir -p /etc/ansible
 cp etc-ansible-hosts /etc/ansible/hosts

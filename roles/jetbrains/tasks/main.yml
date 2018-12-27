@@ -1,0 +1,10 @@
+- name: Download Jetbrains Toolbox 
+  unarchive:
+    src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.12.4481.tar.gz
+    dest: /tmp/
+    remote_src: yes
+
+- name: Install Jetbrains Toolbox
+  shell: /tmp/jetbrains-toolbox-1.12.4481/jetbrains-toolbox
+
+

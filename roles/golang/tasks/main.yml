@@ -1,0 +1,12 @@
+- name: Install Go
+  apt:
+    name: [golang-go]
+    state: present
+  become: true
+
+- name: Go-lang PATH
+  blockinfile:
+    path: /home/{{ user.name }}/.zshrc
+    block: |
+      export GOPATH=$HOME/Workspace/Go
+      export PATH=$PATH:$GOPATH/bin

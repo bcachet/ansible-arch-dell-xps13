@@ -1,0 +1,24 @@
+- name: Create directories
+  file:
+    path: ~/.local/share/fonts/{{ item }}
+    state: directory
+  with_items:
+    - adobe-fonts/source-code-pro
+    - tonksy/FiraCode
+
+- name: Install Adobe Source Code Pro
+  git:
+    repo: https://github.com/adobe-fonts/source-code-pro.git
+    dest: ~/.local/share/fonts/adobe-fonts/source-code-pro/
+    version: release
+  notify:
+    - Reload fonts
+
+
+- name: Install Tonksy FiraCode
+  unarchive:
+    src: https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip
+    dest: ~/.local/share/fonts/tonksy/FiraCode
+    remote_src: yes
+  notify:
+    - Reload fonts

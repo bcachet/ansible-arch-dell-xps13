@@ -1,0 +1,40 @@
+- name: Install Java
+  apt: 
+    name: ['openjdk-8-jdk', 'openjdk-11-jdk', 'rlwrap']
+    state: present
+  become: true
+
+- name: Get Clojure
+  get_url:
+    url: https://download.clojure.org/install/linux-install-1.9.0.397.sh
+    dest: /tmp/linux-install-1.9.0.sh
+    mode: +x
+
+- name: Install Clojure
+  shell: /tmp/linux-install-1.9.0.sh
+  become: true
+
+- name: Clean
+  file:
+    path: /tmp/linux-install-1.9.0.sh
+    state: absent
+
+- name: Get Leiningen
+  get_url: 
+    url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    dest: /usr/bin/lein
+  become: true
+
+- name: Install Leiningen
+  file:
+    mode: a+x
+    path: /usr/bin/lein
+  become: true
+
+- name: Install joker
+  unarchive:
+    src: https://github.com/candid82/joker/releases/download/v0.10.2/joker-0.10.2-linux-amd64.zip
+    dest: /home/{{ user.name }}/.local/bin/
+    remote_src: yes
+
+

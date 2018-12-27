@@ -1,4 +1,0 @@
-- name: Install Jetbrains Toolbox
-  aur: name=jetbrains-toolbox user={{ user.name }}
-
-

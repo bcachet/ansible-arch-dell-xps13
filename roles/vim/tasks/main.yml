@@ -1,15 +1,12 @@
 - name: Install ViM
-  pacman: name={{ item }} state=present
-  with_items:
-    - vim
+  apt: 
+    name: ['vim']
+    state: present
   become: true
-
-- name: Install Fira Code font
-  aur: name=ttf-fira-code user={{ user.name }}
 
 - name: Install ViM configuration files
   file:
-    src: "{{ role_path }}/files/vim/{{ item }}"
+    src: "{{ role_path }}/files/{{ item }}"
     dest: /home/{{ user.name }}/.{{ item }}
     state: link
     owner: "{{ user.name }}"

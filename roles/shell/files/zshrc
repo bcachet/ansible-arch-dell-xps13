@@ -14,7 +14,7 @@ antigen apply
 
 # # Tools configuration
 # ## AutoJump
-source /etc/profile.d/autojump.zsh
+source /usr/share/autojump/autojump.zsh
 # ## Python virtualenv
 export PATH=$PATH:~/.local/bin
 
@@ -32,23 +32,10 @@ alias open='open_command'
 alias killemacs='emacsclient -e "(kill-emacs)"'
 alias e='emacsclient -nw --alternate-editor="" --create-frame "$@"'
 alias E='emacsclient --alternate-editor="" --create-frame "$@" --no-wait --quiet'
-# alias aws='aws --endpoint-url="sos-ch-dk-2.exo.io"'
-# Aliases for ArchLinux
-alias pacu='sudo pacman -Syu'
-
-# Docker
 
 # Environment Variables
 export SHELL=/usr/bin/zsh
-# export TERM="screen-256color"
 export EDITOR=vim
-export USE_EDITOR=$EDITOR
-export VISUAL=$EDITOR
-
-
-# SSH Keychain (maybe I should add Timeout to keychain)
-export SSH_ASKPASS=/usr/bin/ksshaskpass
-eval `keychain --agents ssh --eval id_rsa`
 
 # source ~/.zshrc.vars
 # source ~/.zshrc.exo
@@ -56,5 +43,6 @@ eval `keychain --agents ssh --eval id_rsa`
 # added by pipsi (https://github.com/mitsuhiko/pipsi)
 export PATH="/home/bertrand/.local/bin:$PATH"
 
-# added by pipsi (https://github.com/mitsuhiko/pipsi)
-export PATH="/home/bertrand/.local/bin:$PATH"
+# BEGIN ANSIBLE MANAGED BLOCK
+export PATH=$PATH:$HOME/.local/bin
+# END ANSIBLE MANAGED BLOCK

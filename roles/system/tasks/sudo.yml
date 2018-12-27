@@ -1,5 +1,5 @@
 - name: Install SUDO
-  pacman: name=sudo state=present
+  apt: name=sudo state=present
   become: true
 
 - name: Add user to wheel group

@@ -1,7 +1,7 @@
 - name: Install every day applications
-  pacman: name={{ item }} state=present
-  with_items:
-          - firefox
+  apt:
+    name: ['firefox']
+    state: present
   become: true
   notify:
     - configure sandboxing

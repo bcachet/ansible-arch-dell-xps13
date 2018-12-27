@@ -1,11 +1,6 @@
 - name: Install base packages
-  pacman: name={{ item }} state=present
-  with_items:
-    - base-devel
-    - coreutils
-    - moreutils
-    - lsof
-    - htop
-    - perf
+  apt: 
+    name: ['build-essential', 'coreutils', 'moreutils', 'lsof', 'htop', 'linux-tools-generic']
+    state: present
   become: true
 
