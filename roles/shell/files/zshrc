@@ -15,8 +15,6 @@ antigen apply
 # # Tools configuration
 # ## AutoJump
 source /usr/share/autojump/autojump.zsh
-# ## Python virtualenv
-export PATH=$PATH:~/.local/bin
 
 # Aliases
 alias ls='ls --color'
@@ -44,5 +42,6 @@ export EDITOR=vim
 export PATH="/home/bertrand/.local/bin:$PATH"
 
 # BEGIN ANSIBLE MANAGED BLOCK
-export PATH=$PATH:$HOME/.local/bin
+export GOPATH=$HOME/Workspace/Go
+export PATH=$PATH:$GOPATH/bin
 # END ANSIBLE MANAGED BLOCK

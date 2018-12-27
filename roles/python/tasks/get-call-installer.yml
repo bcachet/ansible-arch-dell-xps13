@@ -1,0 +1,5 @@
+- get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.tmp }}"
+
+- shell: python3 "{{ item.tmp }}"

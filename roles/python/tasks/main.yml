@@ -1,0 +1,18 @@
+- name: Install Python
+  apt:
+    name: ['python', 'python3']
+    state: present
+  become: true
+
+- name: Download Pipsi installer
+  include_tasks: get-call-installer.yml
+  with_items:
+    - {url: "https://raw.githubusercontent.com/kennethreitz/pipenv/master/get-pipenv.py", tmp: /tmp/get-pipenv.py}
+    - {url: "https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py", tmp: /tmp/get-pipsi.py}
+
+- name: Install flake8/black
+  shell: /home/{{ user.name }}/.local/bin/pipsi install {{ item }}
+  with_items:
+    - black
+    - flake8
+
