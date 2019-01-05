@@ -1,5 +1,6 @@
 - name: Install base packages
-  apt: 
+  apt:
+    update_cache: yes
     name: ['build-essential', 'coreutils', 'moreutils', 'lsof', 'htop', 'linux-tools-generic']
     state: present
   become: true

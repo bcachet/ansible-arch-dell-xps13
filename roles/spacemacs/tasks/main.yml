@@ -1,24 +1,7 @@
-- name: Install emacs
-  apt: 
-    name: ['emacs', 'ctags']
-    state: present
-  become: true
-
 - name: Install spacemacs
   git:
     repo: https://github.com/syl20bnr/spacemacs
     dest: /home/{{ user.name }}/.emacs.d
     version: develop
-
-- name: Spacemacs configuration
-  file:
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: /home/{{ user.name }}/.{{ item }}
-    state: link
-    owner: "{{ user.name }}"
-    group: "{{ user.group }}"
-  with_items:
-    - spacemacs
-    - authinfo.gpg
 
 # https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources

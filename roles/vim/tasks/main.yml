@@ -4,17 +4,6 @@
     state: present
   become: true
 
-- name: Install ViM configuration files
-  file:
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: /home/{{ user.name }}/.{{ item }}
-    state: link
-    owner: "{{ user.name }}"
-    group: "{{ user.group }}"
-  with_items:
-    - vimrc
-    - vimrc.local.bundles
-
 - name: Install ViM packages
   shell: |
     vim +PlugInstall +qa << EOL

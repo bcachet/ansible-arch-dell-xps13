@@ -1,19 +1,20 @@
 - hosts: localhost
   roles:
+    # - { role: home, tags: ['development'] }
     # - { role: system, tags: ['system'] }
-    # - { role: base, tags: ['base'] }
+    - { role: base, tags: ['base'] }
     # - { role: shell, tags: ['base'] }
     # - { role: firejail, tags: ['security'] }
     # - { role: development, tags: ['development'] }
     # - { role: fonts, tags: ['development']}
     # - { role: git, tags: ['development'] }
-    # - { role: spacemacs, tags: ['development'] }
+    - { role: spacemacs, tags: ['development'] }
     # - { role: vim, tags: ['development'] }
     # - { role: jetbrains, tags: ['development'] }
     # - { role: clojure, tags: ['development'] }
     # - { role: docker, tags: ['development'] }
     # - { role: golang, tags: ['development'] }
-    - { role: python, tags: ['development'] }
+    # - { role: python, tags: ['development'] }
     # - { role: applications, tags: ['apps'] }
     # - { role: irc, tags: ['apps'] }
 

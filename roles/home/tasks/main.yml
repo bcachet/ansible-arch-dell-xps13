@@ -1,0 +1,18 @@
+- name: Configuration files
+  file:
+    src: "{{ playbook_dir }}/home/files/{{ item }}"
+    dest: /home/{{ user.name }}/.{{ item }}
+    state: link
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+  with_items:
+    - antigen.zsh
+    - zshrc
+    - tmux.conf.local
+    - vimrc
+    - vimrc.local.bundles
+    - authinfo.gpg
+    - gitconfig
+    - gitignore
+    - gitmessage
+    - spacemacs

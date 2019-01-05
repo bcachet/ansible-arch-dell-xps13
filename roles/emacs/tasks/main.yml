@@ -1,0 +1,5 @@
+- name: Install emacs
+  apt: 
+    name: ['emacs', 'ctags']
+    state: present
+  become: true

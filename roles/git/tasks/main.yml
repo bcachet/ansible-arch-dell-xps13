@@ -3,15 +3,3 @@
     name: ['git']
     state: present
   become: true
-
-- name: Git configuration
-  file:
-    src: "{{ role_path }}/files/{{ item }}"
-    dest: /home/{{ user.name }}/.{{ item }}
-    state: link
-    owner: "{{ user.name }}"
-    group: "{{ user.group }}"
-  with_items:
-    - gitconfig
-    - gitmessage
-    - gitignore
