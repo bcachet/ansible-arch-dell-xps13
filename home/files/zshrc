@@ -34,6 +34,7 @@ alias E='emacsclient --alternate-editor="" --create-frame "$@" --no-wait --quiet
 # Environment Variables
 export SHELL=/usr/bin/zsh
 export EDITOR=vim
+export TERM="xterm-256color"
 
 # source ~/.zshrc.vars
 # source ~/.zshrc.exo

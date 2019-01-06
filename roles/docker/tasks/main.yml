@@ -41,3 +41,22 @@
     url: "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-{{ plat_version.stdout }}-{{ arch_version.stdout }}"
     dest: /home/{{ user.name }}/.local/bin/docker-compose
     mode: +x
+
+- name: Install local registry
+  file:
+    path: /etc/docker/certs.d/registry.internal.exoscale.ch
+    state: directory
+  become: true
+
+- name: Copy certificate authority
+  copy:
+    content: "{{ item.content }}"
+    dest: "/etc/docker/certs.d/registry.internal.exoscale.ch/{{ item.path }}"
+    mode: 0600
+  become: true
+  with_items:
+    - { content: "{{ exo_ca_cert }}", path: ca.crt }
+    - { content: "{{ docker_client_cert }}", path: client.cert }
+    - { content: "{{ docker_client_key }}", path: client.key }
+
+

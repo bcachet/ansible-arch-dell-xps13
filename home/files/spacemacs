@@ -40,14 +40,20 @@ This function should only modify configuration layer settings."
      go
      (c-c++ :variables
             c-c++-enable-clang-support t)
-     ;; Configuration Files
+     sql
+     ;; File support
      yaml
+     ;; html
+     ;; csv
      markdown
+     ;; org
      ;; Development Tools
      git
      terraform
+     ;; vagrant
      docker
      ansible
+     restclient
      ;; Improve Spacemacs/Unix interaction
      xclipboard
      ;; ----------------------------------------------------------------
@@ -60,20 +66,16 @@ This function should only modify configuration layer settings."
                    auto-completion-return-key-behavior 'complete
                    auto-completion-tab-key-behavior 'cycle
                    auto-completion-complete-with-key-sequence nil
-                   auto-completion-complete-with-key-sequence-delay 2
+                   auto-completion-complete-with-key-sequence-delay 5
                    auto-completion-private-snippets-directory nil
                    auto-completion-enable-help-tooltip 'manual
                    auto-completion-enable-snippets-in-popup t)
-     better-defaults
      emacs-lisp
      multiple-cursors
-     org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
+     theming
      )
 
    ;; List of additional packages that will be installed without being
@@ -83,8 +85,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(kaolin-themes
-                                      blacken
+   dotspacemacs-additional-packages '(blacken
                                       forge)
 
    ;; A list of packages that cannot be updated.
@@ -208,11 +209,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         kaolin-dark
-                         hickey
-                         sanityinc-tomorrow-night
-                         monochrome
+   dotspacemacs-themes '(misterioso
                          )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -466,6 +463,12 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+(setq theming-modifications
+        '((misterioso
+           (default :background "gray12")
+           (hl-line :inherit nil :background "gray22")
+           (mode-line :background "gray6")
+           )))
   )
 
 (defun dotspacemacs/user-load ()
@@ -481,6 +484,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (add-hook 'python-mode-hook 'blacken-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -497,16 +501,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yapfify xterm-color unfill sublime-themes shell-pop pyvenv pytest pyenv-mode py-isort pippel pipenv pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-brain mwim multi-term monochrome-theme live-py-mode kaolin-themes autothemer jinja2-mode htmlize helm-rtags helm-pydoc helm-org-rifle google-c-style godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gnuplot forge closql emacsql-sqlite emacsql evil-org eshell-z eshell-prompt-extras esh-help dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat disaster cython-mode company-terraform terraform-mode hcl-mode company-rtags rtags company-quickhelp pos-tip company-go go-mode company-c-headers company-ansible company-anaconda clang-format blacken ansible-doc ansible anaconda-mode pythonic yasnippet-snippets yaml-mode ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection spaceline-all-the-icons smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile company-statistics column-enforce-mode color-theme-sanityinc-tomorrow clojure-snippets clojure-cheatsheet clean-aindent-mode cider-eval-sexp-fu centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(safe-local-variable-values
-   (quote
-    ((cider-clojure-cli-global-options . "-A:dev")
-     (go-backend . go-mode)
-     (go-backend . lsp)))))
+    (yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-terraform company-statistics company-rtags company-restclient know-your-http-well company-quickhelp pos-tip company-go company-c-headers company-ansible company-anaconda company clojure-snippets auto-yasnippet yasnippet ac-ispell auto-complete yapfify yaml-mode ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org terraform-mode symon string-inflection sql-indent spaceline-all-the-icons smeargle restclient-helm restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file ob-restclient ob-http neotree nameless move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint jinja2-mode indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-ag google-translate google-c-style golden-ratio godoctor go-tag go-rename go-impl go-guru go-gen-test go-fill-struct go-eldoc gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md forge font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disaster diminish define-word cython-mode counsel-projectile column-enforce-mode clojure-cheatsheet clean-aindent-mode clang-format cider-eval-sexp-fu centered-cursor-mode blacken auto-highlight-symbol auto-compile ansible-doc ansible anaconda-mode aggressive-indent ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil)))))
+ '(default ((t (:background "gray12"))))
+ '(hl-line ((t (:inherit nil :background "gray22"))))
+ '(mode-line ((t (:background "gray6")))))
 )
