@@ -12,10 +12,9 @@
     # - { role: vim, tags: ['development'] }
     # - { role: jetbrains, tags: ['development'] }
     # - { role: clojure, tags: ['development'] }
-    - { role: docker, tags: ['development'] }
+    # - { role: docker, tags: ['development'] }
     # - { role: golang, tags: ['development'] }
     # - { role: python, tags: ['development'] }
     # - { role: applications, tags: ['apps'] }
     # - { role: irc, tags: ['apps'] }
-
-
+    - { role: atom, tags: ['development'] }

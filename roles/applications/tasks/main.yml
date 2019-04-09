@@ -1,9 +1,22 @@
+- name:    Add Firefox GPG key
+  apt_key:
+    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    state: present
+  become: true
+
+- name:    Add Firefox APT repository
+  apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+  become: true
+
 - name: Install every day applications
   apt:
-    name: ['firefox']
+    name: ['firefox', 'google-chrome-stable']
     state: present
+    update_cache: yes
   become: true
   notify:
     - configure sandboxing
+
 
 

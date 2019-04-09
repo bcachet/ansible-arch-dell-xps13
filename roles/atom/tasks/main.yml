@@ -1,0 +1,20 @@
+# - name: Install Atom Editor
+#   snap:
+#     name: atom
+#     state: present
+#   become: true
+
+- name: Install packages
+  command: apm install "{{ item }}"
+  with_items:
+    - parinfer
+    - lisp-paredit
+    - rainbow-delimiters
+    - ink
+    - proto-repl
+    - linter
+    - linter-joker
+    - atom-beautify
+    - alabaster-syntax
+    - chestnut-light-atom-syntax
+    - teletype
